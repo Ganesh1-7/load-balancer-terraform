@@ -22,13 +22,14 @@ systemctl enable nginx
 systemctl start nginx
 
 # Clone website repository
-rm -rf /tmp/site
-git clone https://github.com/Ganesh1-7/Bubble_game.git /tmp/site
 
 # Deploy website
 rm -rf /var/www/html/*
-cp -r /tmp/site/* /var/www/html/
 
+cat > /var/www/html/index.html <<EOF
+<h1>Load Balancer Demo</h1>
+<h2>Hostname: $(hostname)</h2>
+EOF
 # Set permissions
 chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
